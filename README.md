@@ -15,4 +15,6 @@ Razviti WCF klijent-servis model takav da se u&esnici u komunikaciii medusobno a
 Prilikom zahteva za dobijanje sertifikata, klijenti uspostavljaju komunikaciu sa CMS komponentom putem Windows autentifikacionog protokola. Na osnovu imena korisnika definise se CommonName atribut, dok se na osnovu pripadnosti Windows grupi definise OU atribut sertifikata
 Nakon uspesne autentifikacije, klijenti se na random odredeni period [1-10 sec] javljaju servisu koji upisuje u tekstualni fajl sledece: "<ID>: <Timestamp>; <CommonName>" (gde je ID redni broj upisa u fajl, Timestamp je vreme poziva metode od strane klijenta, Common Name je atribut sertifikata) ali samo pod uslovom da je klijent sertifikovan da bude Elan iedne od detiri korisnicke grupe (RegionEast, Region West, RegionSouth, RegionNorth)
 
-Dodatno, servis treba da vodi evidenciju o svim klijentskim procesima u okviru Application Windows event loga: 1) da je uspostavliena nova konekcia sa odredenim klijentom 2) da je komunikacija prekinuta.
+Dodatno, servis treba da vodi evidenciju o svim klijentskim procesima u okviru Application Windows event loga: 
+1) da je uspostavliena nova konekcia sa odredenim klijentom
+2) 2) da je komunikacija prekinuta.

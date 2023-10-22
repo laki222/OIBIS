@@ -1,0 +1,10 @@
+C:\Users\a\Desktop\OIBIS\Server\bin\Debug\Server.exe.config
+C:\Users\a\Desktop\OIBIS\Server\bin\Debug\Server.exe
+C:\Users\a\Desktop\OIBIS\Server\bin\Debug\Server.pdb
+C:\Users\a\Desktop\OIBIS\Server\bin\Debug\Common.dll
+C:\Users\a\Desktop\OIBIS\Server\bin\Debug\Common.pdb
+C:\Users\a\Desktop\OIBIS\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\a\Desktop\OIBIS\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\a\Desktop\OIBIS\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\a\Desktop\OIBIS\Server\obj\Debug\Server.exe
+C:\Users\a\Desktop\OIBIS\Server\obj\Debug\Server.pdb

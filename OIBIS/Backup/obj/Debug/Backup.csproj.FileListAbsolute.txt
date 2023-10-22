@@ -1,0 +1,10 @@
+C:\Users\a\Desktop\OIBIS\Backup\bin\Debug\Backup.exe.config
+C:\Users\a\Desktop\OIBIS\Backup\bin\Debug\Backup.exe
+C:\Users\a\Desktop\OIBIS\Backup\bin\Debug\Backup.pdb
+C:\Users\a\Desktop\OIBIS\Backup\bin\Debug\Common.dll
+C:\Users\a\Desktop\OIBIS\Backup\bin\Debug\Common.pdb
+C:\Users\a\Desktop\OIBIS\Backup\obj\Debug\Backup.csproj.AssemblyReference.cache
+C:\Users\a\Desktop\OIBIS\Backup\obj\Debug\Backup.csproj.CoreCompileInputs.cache
+C:\Users\a\Desktop\OIBIS\Backup\obj\Debug\Backup.csproj.CopyComplete
+C:\Users\a\Desktop\OIBIS\Backup\obj\Debug\Backup.exe
+C:\Users\a\Desktop\OIBIS\Backup\obj\Debug\Backup.pdb

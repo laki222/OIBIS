@@ -12,11 +12,13 @@ namespace Server
         public string DodajLice(string tekst)
         {
             if(tekst.Equals("admin")) {
+                Console.WriteLine($"\nClient connected with message: {tekst}");
                 return "Uspesna prijava";
             }
             else
             {
-                return "Neuspesna prijava";
+                Console.WriteLine($"\nClient connected with message: {tekst}");
+                return "Neuspesna prijava. ";
             }
         }
     }

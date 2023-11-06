@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CertMng.cs" />
+    <Compile Include="ICommunication.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,7 +12,7 @@ namespace Common
     {
         [OperationContract]
        
-        string DodajLice(string tekst);
+       void TestCommunication();
 
     }
 }

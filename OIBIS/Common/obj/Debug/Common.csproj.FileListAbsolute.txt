@@ -4,3 +4,21 @@ C:\Users\a\Desktop\OIBIS\Common\obj\Debug\Common.csproj.AssemblyReference.cache
 C:\Users\a\Desktop\OIBIS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\a\Desktop\OIBIS\Common\obj\Debug\Common.dll
 C:\Users\a\Desktop\OIBIS\Common\obj\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\bin\Debug\Common.dll
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\bin\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.dll
+C:\Users\Korisnik\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.pdb
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\bin\Debug\Common.dll
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\bin\Debug\Common.pdb
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.dll
+C:\Users\copa2\Desktop\OIBIS\OIBIS\Common\obj\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\bin\Debug\Common.dll
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\bin\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\obj\Debug\Common.dll
+C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Common\obj\Debug\Common.pdb

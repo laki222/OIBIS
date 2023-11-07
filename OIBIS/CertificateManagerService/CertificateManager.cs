@@ -27,7 +27,6 @@ namespace CertificateManagerService
 
             string commonName = Formatter.ParseName(windowsIdentity.Name);
 
-            
 
             if (!File.Exists(root + ".cer"))
             {
@@ -47,6 +46,7 @@ namespace CertificateManagerService
                 string cmd2 = "/c pvk2pfx.exe /pvk " + commonName + ".pvk /pi " + password + " /spc " + commonName + ".cer /pfx " + commonName + ".pfx";
                 System.Diagnostics.Process.Start("cmd.exe", cmd2).WaitForExit();
 
+                UpisiSertifikat(commonName, password);
 
                 if (File.Exists(commonName + ".cer"))
                 {
@@ -86,7 +86,7 @@ namespace CertificateManagerService
                 string cmd = "/c makecert -iv " + root + ".pvk -n \"CN=" + commonName + "\" -ic " + root + ".cer " + commonName + ".cer -sr localmachine -ss My -sky exchange";
                 System.Diagnostics.Process.Start("cmd.exe", cmd).WaitForExit();
 
-                
+                UpisiSertifikat(commonName, "");
 
                 if (File.Exists(commonName + ".cer"))
                 {         
@@ -127,6 +127,40 @@ namespace CertificateManagerService
                     }
                 }
                 return null;
+            }
+        }
+
+
+        private void UpisiSertifikat(string commonName, string password)
+        {
+            try
+            {
+                
+                string folderPath = @"C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Sertifikati"; 
+                Directory.CreateDirectory(folderPath);
+
+                X509Certificate2 certificate;
+                if (password == "")
+                    certificate = new X509Certificate2(commonName + ".cer");
+                else
+                    certificate = new X509Certificate2(commonName + ".cer", password);
+
+                
+                string certificatePath = Path.Combine(folderPath, commonName + ".cer");
+                File.WriteAllBytes(certificatePath, certificate.Export(X509ContentType.Cert));
+                
+
+                Console.WriteLine("Sertifikat sacuvan u: " + certificatePath);
+
+                string pfxFilePath = Path.Combine(folderPath, commonName + ".pfx");
+                File.WriteAllBytes(pfxFilePath, certificate.Export(X509ContentType.Pkcs12, password));
+
+                Console.WriteLine("Kljuc sacuvan u: " + certificatePath);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Greska prilikom cuvanja sertifikata: " + commonName + " " + e.Message);
             }
         }
 

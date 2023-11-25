@@ -26,7 +26,7 @@ namespace CertificateManagerService
             WindowsIdentity windowsIdentity = identity as WindowsIdentity;
 
             string commonName = Formatter.ParseName(windowsIdentity.Name);
-
+            string groups = GetUserGroups(windowsIdentity);
 
             if (!File.Exists(root + ".cer"))
             {
@@ -40,7 +40,8 @@ namespace CertificateManagerService
 
                 /*> makecert -sv WCFService.pvk -iv TestCA.pvk -n "CN=wcfservice" -pe -ic TestCA.cer WCFService.cer -sr localmachine -ss My -sky exchange */
 
-                string cmd = "/c makecert -sv " + commonName + ".pvk -iv " + root + ".pvk -n \"CN=" + commonName  + "\" -pe -ic " + root + ".cer " + commonName + ".cer -sr localmachine -ss My -sky exchange";
+                
+                string cmd = "/c makecert -sv " + commonName + ".pvk -iv " + root + ".pvk -n \"CN=" + commonName + ",OU=" + groups + "\" -pe -ic " + root + ".cer " + commonName + ".cer -sr localmachine -ss My -sky exchange";
                 System.Diagnostics.Process.Start("cmd.exe", cmd).WaitForExit();
 
                 string cmd2 = "/c pvk2pfx.exe /pvk " + commonName + ".pvk /pi " + password + " /spc " + commonName + ".cer /pfx " + commonName + ".pfx";
@@ -73,6 +74,7 @@ namespace CertificateManagerService
             WindowsIdentity windowsIdentity = identity as WindowsIdentity;
 
             string commonName = Formatter.ParseName(windowsIdentity.Name);
+            string groups = GetUserGroups(windowsIdentity);
 
             if (!File.Exists(root + ".cer"))
             {
@@ -83,7 +85,7 @@ namespace CertificateManagerService
             try
             {
 
-                string cmd = "/c makecert -iv " + root + ".pvk -n \"CN=" + commonName + "\" -ic " + root + ".cer " + commonName + ".cer -sr localmachine -ss My -sky exchange";
+                string cmd = "/c makecert -iv " + root + ".pvk -n \"CN=" + commonName + ",OU=" + groups + "\" -ic " + root + ".cer " + commonName + ".cer -sr localmachine -ss My -sky exchange";
                 System.Diagnostics.Process.Start("cmd.exe", cmd).WaitForExit();
 
                 UpisiSertifikat(commonName, "");
@@ -172,6 +174,29 @@ namespace CertificateManagerService
             certificate.Import(niz);
 
             return certificate;
+        }
+
+        private string GetUserGroups(WindowsIdentity windowsIdentity)
+        {
+            string groups = "";
+            foreach (IdentityReference group in windowsIdentity.Groups)
+            {
+                SecurityIdentifier sid = (SecurityIdentifier)group.Translate(typeof(SecurityIdentifier));
+                var name = sid.Translate(typeof(NTAccount)).ToString();
+
+                if (name.Contains('\\'))
+                    name = name.Split('\\')[1];
+
+                if (name == "RegionEast" || name == "RegionWest" || name == "RegionSouth" || name == "RegionNorth")
+                {
+                    if (groups != "")
+                        groups += "_" + name;
+                    else
+                        groups = name;
+                }
+            }
+
+            return groups;
         }
 
     }

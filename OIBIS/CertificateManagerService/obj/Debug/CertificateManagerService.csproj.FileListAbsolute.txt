@@ -50,3 +50,14 @@ C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\obj\Deb
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.csproj.CopyComplete
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.exe
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.pdb
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\bin\Debug\CertificateManagerService.exe.config
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\bin\Debug\CertificateManagerService.exe
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\bin\Debug\CertificateManagerService.pdb
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\bin\Debug\Common.dll
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\bin\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.csproj.AssemblyReference.cache
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.csproj.SuggestedBindingRedirects.cache
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.exe
+C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\CertificateManagerService\obj\Debug\CertificateManagerService.pdb

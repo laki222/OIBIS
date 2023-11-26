@@ -50,20 +50,6 @@ C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.c
 C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
 C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
 C:\Users\Korisnik\Desktop\New folder (2)\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe.config
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.pdb
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Common.dll
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.pdb
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe.config
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Common.pdb
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.AssemblyReference.cache
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.SuggestedBindingRedirects.cache
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CoreCompileInputs.cache
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
-C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe.config
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.pdb
@@ -78,3 +64,17 @@ C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.C
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
 C:\Users\Korisnik\Desktop\OIBProj\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe.config
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.pdb
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Common.dll
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.pdb
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe.config
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\bin\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.AssemblyReference.cache
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.SuggestedBindingRedirects.cache
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb

@@ -132,6 +132,15 @@ namespace CertificateManagerService
             }
         }
 
+        public static X509Certificate2 GetCertificateFromFile(string fileName)
+        {
+            X509Certificate2 certificate = new X509Certificate2();
+
+            byte[] niz = File.ReadAllBytes(fileName + ".cer");
+            certificate.Import(niz);
+
+            return certificate;
+        }
 
         private void UpisiSertifikat(string commonName, string password)
         {
@@ -166,15 +175,6 @@ namespace CertificateManagerService
             }
         }
 
-        public static X509Certificate2 GetCertificateFromFile(string fileName)
-        {
-            X509Certificate2 certificate = new X509Certificate2();
-
-            byte[] niz = File.ReadAllBytes(fileName + ".cer");
-            certificate.Import(niz);
-
-            return certificate;
-        }
 
         private string GetUserGroups(WindowsIdentity windowsIdentity)
         {

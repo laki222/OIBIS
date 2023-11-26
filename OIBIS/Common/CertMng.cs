@@ -17,15 +17,21 @@ namespace Common
 
                 X509Certificate2Collection certCollection = store.Certificates.Find(X509FindType.FindBySubjectName, subjectName, true);
 
-                foreach (X509Certificate2 c in certCollection)
+            foreach (X509Certificate2 cert in certCollection)
+            {
+                string name = "";
+                if (cert.SubjectName.Name.Contains(','))
                 {
-                    if (c.SubjectName.Name.Equals(string.Format("CN={0}", subjectName)))
-                    {
-                        return c;
-                    }
+                    name = cert.SubjectName.Name.Split(',')[0];
                 }
-                return null;
-            
+
+                if (name.Equals(string.Format("CN={0}", subjectName)))
+                {
+                    return cert;
+                }
+            }
+            return null;
+
         }
     }
 }

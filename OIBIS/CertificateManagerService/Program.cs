@@ -25,17 +25,11 @@ namespace CertificateManagerService
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
             binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
 
-            
-
-
-
-
             ServiceHost host = new ServiceHost(typeof(CertificateManager));
             host.AddServiceEndpoint(typeof(IService), binding, address);
 
 
             napraviRoot();
-
 
             try
             {
@@ -62,7 +56,6 @@ namespace CertificateManagerService
             try
             {
 
-
                 if (File.Exists(root + ".cer"))
                 {
                     Console.WriteLine("Vec postoji sertifikat " + root);
@@ -75,40 +68,14 @@ namespace CertificateManagerService
                 Console.WriteLine("Kreiran je root sertifikat");
 
                 X509Certificate2 certificate = new X509Certificate2(root + ".cer");
-
-                
-
-
-                
-
+                               
             }
             catch (Exception e)
             {
-                
+                Console.WriteLine("Neusposno kreiran root sertifikat! "); 
             }
         }
 
-
-
-
-        /*NetTcpBinding binding = new NetTcpBinding();
-        binding.Security.Mode = SecurityMode.Transport;
-        binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
-        binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
-
-        using (ServiceHost host = new ServiceHost(typeof(CertificateManager)))
-        {
-
-
-            host.Open();
-
-            Console.WriteLine("Korisnik koji je pokrenuo servera :" + WindowsIdentity.GetCurrent().Name);
-
-            Console.WriteLine("Servis je pokrenut.");
-
-            Console.ReadLine();
-        }
-        */
     }
 }
 

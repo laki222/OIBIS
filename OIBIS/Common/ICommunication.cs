@@ -12,5 +12,8 @@ namespace Common
     {
         [OperationContract]
         string CommunicateWithService(string message, string name);
+
+        [OperationContract]
+        string NotifyClientDisconnected(string clientName);
     }
 }

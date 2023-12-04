@@ -66,10 +66,12 @@ namespace Klijent
                         root = Console.ReadLine();
                         wcfClient.CertificateWithoutPvk(root);
                         break;
-                    case 3: //exit program
+                    case 3: //connect to server
                         ConnectToServer();
                         break;
-                    case 4: //exit program
+                    case 4:
+                        closeConnection();
+                        //exit program
                         break;
                     default:
                         break;
@@ -132,9 +134,6 @@ namespace Klijent
                 Console.WriteLine(response);
 
 
-                
-
-
             }
             
             catch (Exception e)
@@ -153,8 +152,14 @@ namespace Klijent
         {
             if (wcfConnect != null && wcfConnect.State == CommunicationState.Opened)
             {
+
                 try
                 {
+                    
+                    string clientName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+                    string odg = wcfConnect.NotifyClientDisconnected(clientName);
+                    Console.WriteLine(odg);
+                    
                     wcfConnect.Close();
                 }
                 catch (Exception e)

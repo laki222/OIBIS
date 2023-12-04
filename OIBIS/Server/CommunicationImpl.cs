@@ -14,9 +14,16 @@ namespace Server
     {
         public string CommunicateWithService(string message, string name)
         {
+            //$"Service received: {message} from {name}"
+            Console.WriteLine($"Client '{name}' connected. \nwith message: {message}");
+            return "";
+        }
 
-            Console.WriteLine($"Client connected: {name} with message: {message}");
-            return $"Service received: {message} from {name}";
+        public string NotifyClientDisconnected(string clientName)
+        {
+            // Handle the client disconnection here
+            Console.WriteLine($"Client '{clientName}' has disconnected.");
+            return "";
         }
     }
 }

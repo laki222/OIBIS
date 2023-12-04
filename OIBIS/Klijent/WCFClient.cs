@@ -43,7 +43,7 @@ namespace Klijent
             else
             {
 
-                Console.WriteLine("Instalirajte sertifikate u mmc i kliknite enter da nastavite.");
+                Console.WriteLine("Instalirajte sertifikat i kliknite enter da nastavite.");
                 Console.ReadLine();
 
                 Console.WriteLine("Uspesno generisanje sertifikata sa kljucem!");
@@ -65,7 +65,7 @@ namespace Klijent
             else
             {
 
-                Console.WriteLine("Instalirajte sertifikate u mmc i kliknite enter da nastavite.");
+                Console.WriteLine("Instalirajte sertifikate i kliknite enter da nastavite.");
                 Console.ReadLine();
 
                 Console.WriteLine("Uspesno generisanje sertifikata bez kljuca!");

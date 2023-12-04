@@ -48,6 +48,22 @@ namespace Klijent
                 return "Problem u komunikaciji izmedju servera i klijenta";
             }
         }
-    
+
+        public string NotifyClientDisconnected(string clientName)
+        {
+            try
+            {
+                clientName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+                return factory.NotifyClientDisconnected(clientName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "Problem! ";
+                // Handle exceptions if needed
+            }
+        }
+
+
     }
 }

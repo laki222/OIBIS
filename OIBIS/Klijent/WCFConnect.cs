@@ -15,7 +15,7 @@ namespace Klijent
     public class WCFConnect : ChannelFactory<ICommunication>, ICommunication, IDisposable
     {
         ICommunication factory;
-
+        
         public WCFConnect(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
         {
             
@@ -27,15 +27,18 @@ namespace Klijent
             this.Credentials.ClientCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
 
             factory = this.CreateChannel();
-        }
+
+            
+    }
 
 
-        public string CommunicateWithService(string message)
+        public string CommunicateWithService(string message, string name)
         {
             
             try
             {
-                return factory.CommunicateWithService(message);
+                name = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+                return factory.CommunicateWithService(message, name);
                  
                 
             }

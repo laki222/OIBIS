@@ -15,7 +15,7 @@ namespace Klijent
     public class WCFClient : ChannelFactory<IService>, IService, IDisposable
 	{
         IService factory;
-
+        
         public WCFClient(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
         {
 
@@ -25,6 +25,8 @@ namespace Klijent
             this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
             this.Credentials.ClientCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
             factory = this.CreateChannel();
+
+            
         }
 
 

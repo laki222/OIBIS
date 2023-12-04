@@ -11,6 +11,6 @@ namespace Common
     public interface ICommunication
     {
         [OperationContract]
-        string CommunicateWithService(string message);
+        string CommunicateWithService(string message, string name);
     }
 }

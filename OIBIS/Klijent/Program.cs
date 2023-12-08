@@ -32,7 +32,8 @@ namespace Klijent
 
             EndpointAddress endpointAddress = new EndpointAddress(new Uri(address));
 
-            wcfClient = new WCFClient(binding, endpointAddress);
+            ClientNotify clientNotify = new ClientNotify();
+            wcfClient = new WCFClient(clientNotify, binding, endpointAddress);
 
             UserInterface();
 
@@ -49,13 +50,14 @@ namespace Klijent
             {
                 Console.WriteLine("1. Izgenerisi sertifikat sa privatnim kljucem");
                 Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca");
-                Console.WriteLine("3. Konektuj se na server");
-                Console.WriteLine("4. KRAJ");
+                Console.WriteLine("3. Obrisi sertifikat");
+                Console.WriteLine("4. Konektuj se na server");
+                Console.WriteLine("5. KRAJ");
                 int.TryParse(Console.ReadLine(), out option);
                 string root;
 
                 switch (option)
-                {
+                {   
                     case 1:
                         Console.WriteLine("Unesite root: ");
                         root = Console.ReadLine();
@@ -66,17 +68,19 @@ namespace Klijent
                         root = Console.ReadLine();
                         wcfClient.CertificateWithoutPvk(root);
                         break;
-                    case 3: //connect to server
+                    case 3:
+                        wcfClient.RevokeCertificate();
+                        break;
+                    case 4: 
                         ConnectToServer();
                         break;
-                    case 4:
+                    case 5: //exit program
                         closeConnection();
-                        //exit program
                         break;
                     default:
                         break;
                 }
-            } while (option < 4);
+            } while (option < 5);
         }
 
         private static void ConnectToServer()

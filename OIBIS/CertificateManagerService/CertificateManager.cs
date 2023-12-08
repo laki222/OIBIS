@@ -6,14 +6,17 @@ using System.Linq;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
+using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CertificateManagerService
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class CertificateManager : IService, ICertificateManagerService
     {
+        private static List<INotify> clients = new List<INotify>();
         public string CommunicateWithService(string message)
         {
             Console.WriteLine($"Client connected: {message}");
@@ -198,6 +201,68 @@ namespace CertificateManagerService
 
             return groups;
         }
+
+        public bool RevokeCertificate()
+        {
+            IIdentity identity = Thread.CurrentPrincipal.Identity;
+            WindowsIdentity windowsIdentity = identity as WindowsIdentity;
+
+            string commonName = Formatter.ParseName(windowsIdentity.Name);
+            try
+            {
+                X509Certificate2 certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, commonName);
+                if (certificate == null)
+                    return false;
+
+                using (StreamWriter sw = new StreamWriter("RevocationLista.txt", true))
+                {
+                    sw.WriteLine(certificate.Thumbprint);
+                }
+                Console.WriteLine("Dodavanje u Revocation listu! ");
+
+                //Program.proxyReplicator.UpisRevocationList(certificate.Thumbprint);
+
+
+                if (File.Exists(commonName + ".cer"))
+                {
+                    File.Delete(commonName + ".cer");
+                }
+                if (File.Exists(commonName + ".pvk"))
+                {
+                    File.Delete(commonName + ".pvk");
+                }
+                if (File.Exists(commonName + ".pfx"))
+                {
+                    File.Delete(commonName + ".pfx");
+                }
+
+                //Audit.CertificateRevoked(commonName);
+
+
+                foreach (var item in clients)
+                {
+                    try
+                    {
+                        item.NotifyClients(certificate.Thumbprint, commonName);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Desila se greska prilikom obavestavanja klijenata " + e.Message);
+                    }
+                }
+
+
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Audit.CertificateRevokeFailed(commonName);
+
+                return false;
+            }
+        }
+
 
     }
 }

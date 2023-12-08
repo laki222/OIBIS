@@ -28,3 +28,5 @@ C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.As
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.dll
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.pdb
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.EventResource.resources
+C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Common\obj\Debug\Common.csproj.GenerateResource.cache

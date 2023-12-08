@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Klijent
 {
-    public class WCFClient : ChannelFactory<IService>, IService, IDisposable
+    public class WCFClient : DuplexChannelFactory<IService>, IService, IDisposable
 	{
         IService factory;
         
-        public WCFClient(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
+        public WCFClient(object clientNotify, NetTcpBinding binding, EndpointAddress address) : base(clientNotify, binding, address)
         {
 
             string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
@@ -75,6 +75,24 @@ namespace Klijent
 
         }
 
+        public bool RevokeCertificate()
+        {
+            if (!factory.RevokeCertificate())
+            {
+
+                Console.WriteLine("Neuspesno brisanje sertifikata!");
+                return false;
+            }
+            else
+            {
+
+                Console.WriteLine("Sertifikati su povuceni i upisani u RevocationList.txt. Pritisnite enter da nastavite");
+                Console.ReadLine();
+
+                return true;
+            }
+
+        }
 
     }
 }

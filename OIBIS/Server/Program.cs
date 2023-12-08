@@ -30,11 +30,9 @@ namespace Server
             binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
 
             EndpointAddress endpointAddress = new EndpointAddress(new Uri(address));
-
-            wcfServer = new WCFServer(binding, endpointAddress);          
-           
-
-
+            
+            ServerNotify serverNotify= new ServerNotify();
+            wcfServer = new WCFServer(serverNotify, binding, endpointAddress);          
 
             UserInterface(wcfServer);
 
@@ -50,9 +48,10 @@ namespace Server
             do
             {
                 Console.WriteLine("1. Izgenerisi sertifikat sa privatnim kljucem");
-                Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca"); 
-                Console.WriteLine("3. Startuj Host Server");
-                Console.WriteLine("4. KRAJ");
+                Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca");
+                Console.WriteLine("3. Obrisi sertifikat");
+                Console.WriteLine("4. Startuj Host Server");
+                Console.WriteLine("5. KRAJ");
                 int.TryParse(Console.ReadLine(), out option);
                 string root;
                 switch (option)
@@ -68,15 +67,18 @@ namespace Server
                         wcfServer.CertificateWithoutPvk(root);
                         break;
                     case 3:
+                        wcfServer.RevokeCertificate();
+                        break;
+                    case 4:
                         startujHostServer();
                         break;
-                    case 4: //exit program
+                    case 5: //exit program
                         break;
                     default:
                         Console.WriteLine("Greska ");
                         break;
                 }
-            } while (option < 4);
+            } while (option < 5);
         }
 
         private static void startujHostServer()

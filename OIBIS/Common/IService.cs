@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(INotify))]
     public interface IService
     {
 
@@ -17,6 +17,7 @@ namespace Common
         [OperationContract]
         bool CertificateWithPvk(string root);
 
-
+        [OperationContract]
+        bool RevokeCertificate();
     }
 }

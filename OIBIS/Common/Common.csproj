@@ -43,11 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audit.cs" />
+    <Compile Include="AuditEvent.cs" />
     <Compile Include="CertMng.cs" />
+    <Compile Include="EventResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="ICommunication.cs" />
+    <Compile Include="INotify.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EventResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

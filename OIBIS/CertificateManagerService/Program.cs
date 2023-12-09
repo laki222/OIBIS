@@ -15,7 +15,7 @@ namespace CertificateManagerService
     {
         static void Main(string[] args)
         {
-            
+            Audit.Initialize();
 
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9999/Service";
@@ -68,10 +68,13 @@ namespace CertificateManagerService
                 Console.WriteLine("Kreiran je root sertifikat");
 
                 X509Certificate2 certificate = new X509Certificate2(root + ".cer");
+
+                Audit.CertificatePasswordCreated(root);
                                
             }
             catch (Exception e)
             {
+                Audit.CertificatePasswordFailed(root);
                 Console.WriteLine("Neusposno kreiran root sertifikat! "); 
             }
         }

@@ -18,7 +18,7 @@ namespace Klijent
 
         static void Main(string[] args)
         {
-
+            Audit.Initialize();
 
             NetTcpBinding binding = new NetTcpBinding();
 

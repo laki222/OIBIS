@@ -19,7 +19,7 @@ namespace Server
         private static WCFServer wcfServer;
         static void Main(string[] args)
         {
-
+            Audit.Initialize();
 
             NetTcpBinding binding = new NetTcpBinding();
 
@@ -34,14 +34,14 @@ namespace Server
             ServerNotify serverNotify= new ServerNotify();
             wcfServer = new WCFServer(serverNotify, binding, endpointAddress);          
 
-            UserInterface(wcfServer);
+            UserInterface();
 
             Console.WriteLine("Konekcija ugasena.");
             Console.ReadLine();
 
         }
 
-        public static void UserInterface(WCFServer wcfServer)
+        public static void UserInterface()
         {
 
             int option = 0;

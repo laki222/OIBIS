@@ -54,17 +54,19 @@ namespace CertificateManagerService
 
                 if (File.Exists(commonName + ".cer"))
                 {
-
+                    Audit.CertificatePasswordCreated(commonName);
                     return true;
                 }
                 else
-                {                  
+                {
+                    Audit.CertificatePasswordFailed(commonName);
                     return false;
                 }
 
             }
             catch (Exception e)
             {
+                Audit.CertificatePasswordFailed(commonName);
                 Console.WriteLine("Greska prilikom kreiranja sertifikata sa sifrom " + e.Message);
                 return false;
             }
@@ -94,16 +96,19 @@ namespace CertificateManagerService
                 UpisiSertifikat(commonName, "");
 
                 if (File.Exists(commonName + ".cer"))
-                {         
-                     return true;
+                {
+                    Audit.CertificateCreated(commonName);
+                    return true;
                 }
                 else
                 {
+                    Audit.CertificateFailed(commonName);
                     return false;
                 }
             }
             catch (Exception e)
             {
+                Audit.CertificateFailed(commonName);
                 Console.WriteLine("Greska prilikom kreiranja sertifikata bez sifre " + e.Message);
                 return false;
             }
@@ -207,12 +212,34 @@ namespace CertificateManagerService
             IIdentity identity = Thread.CurrentPrincipal.Identity;
             WindowsIdentity windowsIdentity = identity as WindowsIdentity;
 
+            string path = @"C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Sertifikati";
             string commonName = Formatter.ParseName(windowsIdentity.Name);
+
+            
+            string cerFilePath = Path.Combine(path, commonName + ".cer");
+            string pvkFilePath = Path.Combine(path, commonName + ".pvk");
+            string pfxFilePath = Path.Combine(path, commonName + ".pfx");
+
+            Console.WriteLine(cerFilePath);
+
             try
             {
                 X509Certificate2 certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, commonName);
                 if (certificate == null)
                     return false;
+
+                if (File.Exists("RevocationLista.txt"))
+                {
+                    using (StreamReader sr = new StreamReader("RevocationLista.txt"))
+                    {
+                        string contents = sr.ReadToEnd();
+                        if (contents.Contains(certificate.Thumbprint))
+                        {
+                            Console.WriteLine("Sertifikat je vec povucen");
+                            return false;
+                        }
+                    }
+                }
 
                 using (StreamWriter sw = new StreamWriter("RevocationLista.txt", true))
                 {
@@ -220,23 +247,26 @@ namespace CertificateManagerService
                 }
                 Console.WriteLine("Dodavanje u Revocation listu! ");
 
-                //Program.proxyReplicator.UpisRevocationList(certificate.Thumbprint);
+                
 
 
-                if (File.Exists(commonName + ".cer"))
+                if (File.Exists(commonName + ".cer") && File.Exists(cerFilePath))
                 {
                     File.Delete(commonName + ".cer");
+                    File.Delete(cerFilePath); 
                 }
-                if (File.Exists(commonName + ".pvk"))
+                if (File.Exists(commonName + ".pvk") && File.Exists(pvkFilePath))
                 {
                     File.Delete(commonName + ".pvk");
+                    File.Delete(pvkFilePath);
                 }
-                if (File.Exists(commonName + ".pfx"))
+                if (File.Exists(commonName + ".pfx") && File.Exists(pfxFilePath))
                 {
                     File.Delete(commonName + ".pfx");
+                    File.Delete(pfxFilePath);
                 }
 
-                //Audit.CertificateRevoked(commonName);
+                Audit.CertificateRevoked(commonName);
 
 
                 foreach (var item in clients)

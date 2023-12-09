@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class Audit
+    public class Audit : IDisposable
     {
         private static EventLog log = new EventLog();
-
 
         public static void Initialize()
         {
@@ -171,5 +170,13 @@ namespace Common
             }
         }
 
+        public void Dispose()
+        {
+            if (log != null)
+            {
+                log.Dispose();
+                log = null;
+            }
+        }
     }
 }

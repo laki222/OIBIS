@@ -15,5 +15,8 @@ namespace Common
 
         [OperationContract]
         string NotifyClientDisconnected(string clientName);
+
+        [OperationContract]
+        void SendRandomTimedMessage(DateTime vreme);
     }
 }

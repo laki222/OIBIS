@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Klijent
@@ -52,7 +53,8 @@ namespace Klijent
                 Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca");
                 Console.WriteLine("3. Obrisi sertifikat");
                 Console.WriteLine("4. Konektuj se na server");
-                Console.WriteLine("5. KRAJ");
+                Console.WriteLine("5. Nasumicno javljanje servisu");
+                Console.WriteLine("6. KRAJ");
                 int.TryParse(Console.ReadLine(), out option);
                 string root;
 
@@ -74,13 +76,16 @@ namespace Klijent
                     case 4: 
                         ConnectToServer();
                         break;
-                    case 5: //exit program
+                    case 5:
+                        SendRandomTimedMessage();
+                        break;
+                    case 6: //exit program
                         closeConnection();
                         break;
                     default:
                         break;
                 }
-            } while (option < 5);
+            } while (option < 6);
         }
 
         private static void ConnectToServer()
@@ -152,6 +157,45 @@ namespace Klijent
 
 
         }
+
+        private static void SendRandomTimedMessage()
+        {
+            if (wcfConnect == null)
+            {
+                Console.WriteLine("Prvo se konektujte na server");
+                return;
+            }
+            Random r = new Random();
+            try
+            {
+                //Console.WriteLine("Unesite 'X' za prekid");
+
+                bool shouldExit = false;
+
+                while (!shouldExit)
+                {
+                    Thread.Sleep(r.Next(1, 10) * 1000);
+                    wcfConnect.SendRandomTimedMessage(DateTime.Now);
+
+                    Console.WriteLine("Saljem poruku, unesite 'X' za prekid");
+
+                    if (Console.KeyAvailable)
+                    {
+                        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                        if (keyInfo.Key == ConsoleKey.X)
+                        {
+                            shouldExit = true;
+                            Console.WriteLine();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static void closeConnection()
         {
             if (wcfConnect != null && wcfConnect.State == CommunicationState.Opened)

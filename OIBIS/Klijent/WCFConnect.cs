@@ -49,6 +49,19 @@ namespace Klijent
             }
         }
 
+        public void SendRandomTimedMessage(DateTime vreme)
+        {
+            try
+            {
+                factory.SendRandomTimedMessage(vreme);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem u slanju poruka ka serveru");
+            }
+        }
+
+
         public string NotifyClientDisconnected(string clientName)
         {
             try

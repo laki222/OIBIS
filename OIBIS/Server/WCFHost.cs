@@ -19,9 +19,10 @@ namespace Server
 
         public WCFHost()
         {
-            //ServiceHost host;
             try
             {
+                Audit.Initialize();
+
                 NetTcpBinding binding = new NetTcpBinding();
                 binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
 
@@ -33,8 +34,7 @@ namespace Server
                 binding.SendTimeout = new TimeSpan(0, 10, 0);
                 binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
 
-
-                string address = "net.tcp://localhost:4005/Server";
+                string address = "net.tcp://localhost:4000/Server";
 
                 host = new ServiceHost(typeof(CommunicationImpl));
                 host.AddServiceEndpoint(typeof(ICommunication), binding, address);
@@ -46,11 +46,8 @@ namespace Server
                 string srvName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
                 host.Credentials.ServiceCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, srvName);
 
-                
-
-                Console.WriteLine("Server pokrenut");
+                Console.WriteLine("Server je pokrenut");
                 Console.WriteLine(WindowsIdentity.GetCurrent().Name);
-
 
             }
             catch (Exception e)
@@ -58,24 +55,20 @@ namespace Server
                 Console.WriteLine("Neuspesna konekcija, generisite sertifikat pa probajte ponovo \n"+e.Message);
             }
 
-
         }
-
         public void OpenServer()
         {
             host.Open();
+            string srvName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+            Audit.ServerConnectionOpen(srvName);
         }
         public void CloseServer()
-        {
-            try
-            {
-                host.Close();
+        {   
+            string srvName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
-            }
-            catch (Exception e)
-            {
-            }
-
+            host.Close();
+            Audit.ServerConnectionClosed(srvName);
+            
         }
     }
 }

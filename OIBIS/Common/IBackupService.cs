@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 namespace Common
 {
     [ServiceContract]
-    public interface ITest
+    public interface IBackupService
     {
         [OperationContract]
-       
-       void TestCommunication();
+        void UpisCertificateList(String thumbprint);
 
+        [OperationContract]
+        void UpisRevocationList(String thumbprint);
     }
 }

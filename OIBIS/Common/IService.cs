@@ -10,7 +10,6 @@ namespace Common
     [ServiceContract(CallbackContract = typeof(INotify))]
     public interface IService
     {
-
         [OperationContract]
         bool CertificateWithoutPvk(string root);
 
@@ -19,5 +18,11 @@ namespace Common
 
         [OperationContract]
         bool RevokeCertificate();
+
+        [OperationContract]
+        void InstallCertificateWithoutPvk(string path);
+
+        [OperationContract]
+        void InstallCertificateWithPvk(string path, string password);
     }
 }

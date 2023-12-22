@@ -2,6 +2,7 @@
 using Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
@@ -24,8 +25,6 @@ namespace Klijent
             NetTcpBinding binding = new NetTcpBinding();
 
             string address = "net.tcp://localhost:9999/Service";
-            //string addressCert = "net.tcp://localhost:9999/ServiceCert";
-
 
             binding.Security.Mode = SecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
@@ -38,11 +37,10 @@ namespace Klijent
 
             UserInterface();
 
-            Console.WriteLine("Konekcija ugasena.");
+            Console.WriteLine("Konekcija je ugasena.");
             Console.ReadLine();
 
         }
-
         public static void UserInterface()
         {
 
@@ -51,12 +49,16 @@ namespace Klijent
             {
                 Console.WriteLine("1. Izgenerisi sertifikat sa privatnim kljucem");
                 Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca");
-                Console.WriteLine("3. Obrisi sertifikat");
-                Console.WriteLine("4. Konektuj se na server");
-                Console.WriteLine("5. Nasumicno javljanje servisu");
-                Console.WriteLine("6. KRAJ");
+                Console.WriteLine("3. Instaliraj sertifikat sa privatnim kljucem");
+                Console.WriteLine("4. Instaliraj sertifikat bez privatnog kljuca");
+                Console.WriteLine("5. Obrisi sertifikate");
+                Console.WriteLine("6. Konektuj se na Host server");
+                Console.WriteLine("7. Nasumicno javljanje servisu");
+                Console.WriteLine("8. Zatvori konekciju");
                 int.TryParse(Console.ReadLine(), out option);
                 string root;
+                string path = @"C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\bin\Debug";
+                string password;
 
                 switch (option)
                 {   
@@ -71,30 +73,37 @@ namespace Klijent
                         wcfClient.CertificateWithoutPvk(root);
                         break;
                     case 3:
-                        wcfClient.RevokeCertificate();
+                        Console.WriteLine("Unesite sifru: ");
+                        password = Console.ReadLine();
+                        wcfClient.InstallCertificateWithPvk(path, password);
                         break;
-                    case 4: 
-                        ConnectToServer();
+                    case 4:
+                        wcfClient.InstallCertificateWithoutPvk(path);
                         break;
                     case 5:
+                        wcfClient.RevokeCertificate();
+                        break;
+                    case 6: 
+                        ConnectToServer();
+                        break;
+                    case 7:
                         SendRandomTimedMessage();
                         break;
-                    case 6: //exit program
+                    case 8: //exit program
                         closeConnection();
                         break;
                     default:
+                        Console.WriteLine("Greska");
                         break;
                 }
-            } while (option < 6);
+            } while (option < 8);
         }
 
         private static void ConnectToServer()
         {
             NetTcpBinding binding = new NetTcpBinding();
 
-            string address = "net.tcp://localhost:4005/Server";
-            //string addressCert = "net.tcp://localhost:9999/ServiceCert";
-
+            string address = "net.tcp://localhost:4000/Server";
 
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
             binding.MaxReceivedMessageSize = 10000000;
@@ -113,18 +122,15 @@ namespace Klijent
                 servCert = CertMng.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, serverName);
                 if (servCert == null)
                 {
-                    Console.WriteLine("Uneli ste servera koji ne postoji, molimo vas probajte ponovo");
+                    Console.WriteLine("Server ne postoji. Molimo vas probajte ponovo.");
                     return;
                 }
-
             }
             catch (Exception e)
             {
-                Console.WriteLine("Uneli ste servera koji ne postoji, molimo vas probajte ponovo");
+                Console.WriteLine($"Server ne postoji. Molimo vas probajte ponovo.\n {e.Message}");
                 return;
-
             }
-
 
             WCFConnect proxyWcf;
   
@@ -133,31 +139,28 @@ namespace Klijent
                 EndpointAddress addressServer = new EndpointAddress(new Uri(address), new X509CertificateEndpointIdentity(servCert));
 
                 proxyWcf = new WCFConnect(binding, addressServer);
+                string clientName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
                 Console.WriteLine("Uspostavljena je komunikacija\n");
+
+                Audit.ClientConnectionOpen(clientName);
 
                 Console.WriteLine("Unesite poruku: ");
                 string msg = Console.ReadLine();
                 string name = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
                 string response = proxyWcf.CommunicateWithService(msg, name);
+
                 Console.WriteLine(response);
-
-
             }
             
             catch (Exception e)
             {
-                Console.WriteLine("Neuspesna konekcija, generisite sertifikat pa probajte ponovo");
+                Console.WriteLine($"Neuspesna konekcija, generisite sertifikat pa probajte ponovo.\n {e.Message} ");
                 return;
 
             }
-            
-
             wcfConnect = proxyWcf;
-
-
         }
-
         private static void SendRandomTimedMessage()
         {
             if (wcfConnect == null)
@@ -168,8 +171,6 @@ namespace Klijent
             Random r = new Random();
             try
             {
-                //Console.WriteLine("Unesite 'X' za prekid");
-
                 bool shouldExit = false;
 
                 while (!shouldExit)
@@ -200,14 +201,12 @@ namespace Klijent
         {
             if (wcfConnect != null && wcfConnect.State == CommunicationState.Opened)
             {
-
                 try
                 {
-                    
                     string clientName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
                     string odg = wcfConnect.NotifyClientDisconnected(clientName);
                     Console.WriteLine(odg);
-                    
+                    Audit.ClientConnectionClosed(clientName);
                     wcfConnect.Close();
                 }
                 catch (Exception e)

@@ -36,11 +36,10 @@ namespace Server
 
             UserInterface();
 
-            Console.WriteLine("Konekcija ugasena.");
+            Console.WriteLine("Konekcija je ugasena.");
             Console.ReadLine();
 
         }
-
         public static void UserInterface()
         {
 
@@ -49,11 +48,16 @@ namespace Server
             {
                 Console.WriteLine("1. Izgenerisi sertifikat sa privatnim kljucem");
                 Console.WriteLine("2. Izgenerisi sertifikat bez privatnog kljuca");
-                Console.WriteLine("3. Obrisi sertifikat");
-                Console.WriteLine("4. Startuj Host Server");
-                Console.WriteLine("5. KRAJ");
+                Console.WriteLine("3. Instaliraj sertifikat sa privatnim kljucem");
+                Console.WriteLine("4. Instaliraj sertifikat bez privatnog kljuca");
+                Console.WriteLine("5. Obrisi sertifikate");
+                Console.WriteLine("6. Pokreni Host Server");
+                Console.WriteLine("7. Zatvori konekciju");
                 int.TryParse(Console.ReadLine(), out option);
                 string root;
+                string path = @"C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\CertificateManagerService\bin\Debug";
+                string password;
+
                 switch (option)
                 {
                     case 1:
@@ -67,39 +71,43 @@ namespace Server
                         wcfServer.CertificateWithoutPvk(root);
                         break;
                     case 3:
-                        wcfServer.RevokeCertificate();
+                        Console.WriteLine("Unesite sifru: ");
+                        password = Console.ReadLine();
+                        wcfServer.InstallCertificateWithPvk(path, password);
                         break;
                     case 4:
-                        startujHostServer();
+                        wcfServer.InstallCertificateWithoutPvk(path);
                         break;
-                    case 5: //exit program
+                    case 5:
+                        wcfServer.RevokeCertificate();
+                        break;
+                    case 6:
+                        StartujHostServer();
+                        break;
+                    case 7: //exit program
+                        CloseConnection();
                         break;
                     default:
                         Console.WriteLine("Greska ");
                         break;
                 }
-            } while (option < 5);
+            } while (option < 7);
         }
 
-        private static void startujHostServer()
+        private static void StartujHostServer()
         {
             try
-            {
-                
+            {  
                 wcfHost = new WCFHost();
                 wcfHost.OpenServer();
-                //Console.WriteLine("WCFHost je startovan\n ");
-                Console.ReadLine();
-                
-
+                Console.ReadLine();   
             }
             catch (Exception e)
             {
                 Console.WriteLine("Neuspesna konekcija, generisite sertifikat pa probajte ponovo \n" +e.Message);
             }
         }
-
-        public static void closeConnection()
+        public static void CloseConnection()
         {
             if (wcfHost != null)
             {

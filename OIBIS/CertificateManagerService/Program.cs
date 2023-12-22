@@ -13,13 +13,13 @@ namespace CertificateManagerService
 {
     public class Program
     {
+        public static ProxyBackup proxyBackup = null;
         static void Main(string[] args)
         {
             Audit.Initialize();
 
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9999/Service";
-
 
             binding.Security.Mode = SecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
@@ -28,6 +28,16 @@ namespace CertificateManagerService
             ServiceHost host = new ServiceHost(typeof(CertificateManager));
             host.AddServiceEndpoint(typeof(IService), binding, address);
 
+            //Replication proxy
+            NetTcpBinding bindingBackup = new NetTcpBinding();
+            string addressBackup = "net.tcp://localhost:9997/BackupService";
+
+            bindingBackup.Security.Mode = SecurityMode.Transport;
+            bindingBackup.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+            bindingBackup.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri(addressBackup));
+            proxyBackup = new ProxyBackup(binding, endpointAddress);
 
             napraviRoot();
 
@@ -46,7 +56,6 @@ namespace CertificateManagerService
             {
                 host.Close();
             }
-
         }
 
         private static void napraviRoot()
@@ -55,7 +64,6 @@ namespace CertificateManagerService
             string root = Console.ReadLine();
             try
             {
-
                 if (File.Exists(root + ".cer"))
                 {
                     Console.WriteLine("Vec postoji sertifikat " + root);
@@ -69,13 +77,16 @@ namespace CertificateManagerService
 
                 X509Certificate2 certificate = new X509Certificate2(root + ".cer");
 
+                proxyBackup.UpisCertificateList(certificate.Subject + ", thumbprint: " + certificate.Thumbprint);
+
                 Audit.CertificatePasswordCreated(root);
-                               
+                Audit.CertificateReplicated(root);
+               
             }
             catch (Exception e)
             {
                 Audit.CertificatePasswordFailed(root);
-                Console.WriteLine("Neusposno kreiran root sertifikat! "); 
+                Console.WriteLine("Neuspesno kreiran root sertifikat"); 
             }
         }
 

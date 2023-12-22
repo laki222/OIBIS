@@ -21,7 +21,6 @@ namespace Server
 
             string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
-            //binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
             this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
             this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
             this.Credentials.ClientCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
@@ -29,10 +28,8 @@ namespace Server
             factory = this.CreateChannel();
         }
 
-
         public bool CertificateWithPvk(string root)
         {
-
 
             if (!factory.CertificateWithPvk(root))
             {
@@ -49,18 +46,15 @@ namespace Server
 
         }
 
-
         public bool CertificateWithoutPvk(string root)
         {
             if (!factory.CertificateWithoutPvk(root))
             {
-
                 Console.WriteLine("Neuspesno  generisanje sertifikata bez kljuca. Pokusajte ponovo!");
                 return false;
             }
             else
             {
-
                 Console.WriteLine("Uspesno generisanje sertifikata bez kljuca!");
 
                 return true;
@@ -72,19 +66,39 @@ namespace Server
         {
             if (!factory.RevokeCertificate())
             {
-
-                Console.WriteLine("Neuspesno brisanje sertifikata!");
+                Console.WriteLine("Neuspesno povlacenje sertifikata!");
                 return false;
             }
             else
             {
-
                 Console.WriteLine("Sertifikati su povuceni i upisani u RevocationList.txt. Pritisnite enter da nastavite");
                 Console.ReadLine();
 
                 return true;
             }
 
+        }
+        public void InstallCertificateWithoutPvk(string path)
+        {
+            try
+            {
+                factory.InstallCertificateWithoutPvk(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem prilikom instalacije sertifikata bez privatnog kljuca");
+            }
+        }
+        public void InstallCertificateWithPvk(string path, string password)
+        {
+            try
+            {
+                factory.InstallCertificateWithPvk(path, password);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem prilikom instalacije sertifikata sa privatnim kljucem");
+            }
         }
     }
 }

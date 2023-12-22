@@ -51,10 +51,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="IBackupService.cs" />
     <Compile Include="ICommunication.cs" />
     <Compile Include="INotify.cs" />
     <Compile Include="IService.cs" />
-    <Compile Include="ITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

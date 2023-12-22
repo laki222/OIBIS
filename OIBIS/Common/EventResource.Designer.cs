@@ -61,7 +61,7 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uspesno kreiranje sertifikata bez pvk-a {0}.
+        ///   Looks up a localized string similar to Uspesno kreiranje sertifikata bez pvk-a &apos;{0}&apos;.
         /// </summary>
         internal static string CertificateCreated {
             get {
@@ -70,7 +70,7 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuspesno kreiranje sertifikata bez pvk-a {0}.
+        ///   Looks up a localized string similar to Neuspesno kreiranje sertifikata bez pvk-a &apos;{0}&apos;.
         /// </summary>
         internal static string CertificateFailed {
             get {
@@ -79,7 +79,7 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uspesno kreiranje sertifikata sa pvk-om {0}.
+        ///   Looks up a localized string similar to Uspesno kreiranje sertifikata sa pvk-om &apos;{0}&apos;.
         /// </summary>
         internal static string CertificatePasswordCreated {
             get {
@@ -88,7 +88,7 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuspesno kreiranje sertifikata sa pvk-om {0}.
+        ///   Looks up a localized string similar to Neuspesno kreiranje sertifikata sa pvk-om &apos;{0}&apos;.
         /// </summary>
         internal static string CertificatePasswordFailed {
             get {
@@ -97,7 +97,16 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uspesno povlacenje sertifikata {0}.
+        ///   Looks up a localized string similar to Uspesno replicirani sertifikati &apos;{0}&apos;.
+        /// </summary>
+        internal static string CertificateReplicated {
+            get {
+                return ResourceManager.GetString("CertificateReplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspesno povlacenje sertifikata &apos;{0}&apos;.
         /// </summary>
         internal static string CertificateRevoked {
             get {
@@ -106,7 +115,16 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuspesno povlacenje sertifikata {0}.
+        ///   Looks up a localized string similar to Uspesno repliciranje povucenih sertifikata &apos;{0}&apos;.
+        /// </summary>
+        internal static string CertificateRevokedReplicated {
+            get {
+                return ResourceManager.GetString("CertificateRevokedReplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuspesno povlacenje sertifikata &apos;{0}&apos;.
         /// </summary>
         internal static string CertificateRevokeFailed {
             get {
@@ -115,7 +133,25 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zatvaranje klijentske konekcije {0}.
+        ///   Looks up a localized string similar to Uspesno instaliran sertifikat bez pvk-a &apos;{0}&apos;.
+        /// </summary>
+        internal static string CertificateWithoutPvkInstallationSuccess {
+            get {
+                return ResourceManager.GetString("CertificateWithoutPvkInstallationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspesno instaliran sertifikat sa pvk-om &apos;{0}&apos;.
+        /// </summary>
+        internal static string CertificateWithPvkInstallationSuccess {
+            get {
+                return ResourceManager.GetString("CertificateWithPvkInstallationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspesno zatvaranje klijentske konekcije &apos;{0}&apos;.
         /// </summary>
         internal static string ClientConnectionClosed {
             get {
@@ -124,11 +160,29 @@ namespace Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zatvaranje serverske konekcije {0}.
+        ///   Looks up a localized string similar to Uspesno uspostavljanje konekcije &apos;{0}&apos;.
+        /// </summary>
+        internal static string ClientConnectionOpen {
+            get {
+                return ResourceManager.GetString("ClientConnectionOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspesno zatvaranje serverske konekcije &apos;{0}&apos;.
         /// </summary>
         internal static string ServerConnectionClosed {
             get {
                 return ResourceManager.GetString("ServerConnectionClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspesno uspostavljanje konekcije &apos;{0}&apos;.
+        /// </summary>
+        internal static string ServerConnectionOpen {
+            get {
+                return ResourceManager.GetString("ServerConnectionOpen", resourceCulture);
             }
         }
     }

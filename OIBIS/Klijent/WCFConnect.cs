@@ -17,30 +17,22 @@ namespace Klijent
         ICommunication factory;
         
         public WCFConnect(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
-        {
-            
+        {           
             string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
-            //binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
             this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
             this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
             this.Credentials.ClientCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
 
             factory = this.CreateChannel();
 
-            
-    }
-
-
+        }
         public string CommunicateWithService(string message, string name)
         {
-            
             try
             {
                 name = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
                 return factory.CommunicateWithService(message, name);
-                 
-                
             }
             catch (Exception e)
             {
@@ -57,11 +49,9 @@ namespace Klijent
             }
             catch (Exception e)
             {
-                Console.WriteLine("Problem u slanju poruka ka serveru");
+                Console.WriteLine("Problem prilikom slanja poruka ka serveru");
             }
         }
-
-
         public string NotifyClientDisconnected(string clientName)
         {
             try
@@ -72,11 +62,8 @@ namespace Klijent
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return "Problem! ";
-                // Handle exceptions if needed
+                return "Problem prilikom obavestavanja";
             }
         }
-
-
     }
 }

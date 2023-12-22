@@ -19,7 +19,6 @@ namespace Common
                 {
                     EventLog.CreateEventSource("CMSEvents", "CMSLog");
 
-
                     Console.WriteLine("Napravljen je event log");
                 }
             }
@@ -28,11 +27,9 @@ namespace Common
                 Console.WriteLine("Problem u podizanju event loga " + e.Message);
             }
 
-
             log.Source = "CMSEvents";
             log.Log = "CMSLog";
         }
-
 
         public static void CertificateCreated(string certName)
         {
@@ -167,6 +164,108 @@ namespace Common
             {
                 throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
                     (int)AuditEventTypes.ServerConnectionClosed));
+            }
+        }
+
+        public static void ClientConnectionOpen(string certName)
+        {
+            if (log != null)
+            {
+                string ClientConnectionOpen =
+                    AuditEvent.ClientConnectionOpen;
+                string message = String.Format(ClientConnectionOpen,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.ClientConnectionOpen));
+            }
+        }
+
+        public static void ServerConnectionOpen(string certName)
+        {
+            if (log != null)
+            {
+                string ServerConnectionOpen =
+                    AuditEvent.ServerConnectionOpen;
+                string message = String.Format(ServerConnectionOpen,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.ServerConnectionOpen));
+            }
+        }
+
+        public static void CertificateReplicated(string certName)
+        {
+            if (log != null)
+            {
+                string CertificateReplicated =
+                    AuditEvent.CertificateReplicated;
+                string message = String.Format(CertificateReplicated,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.CertificateReplicated));
+            }
+        }
+
+        public static void CertificateRevokedReplicated(string certName)
+        {
+            if (log != null)
+            {
+                string CertificateRevokedReplicated =
+                    AuditEvent.CertificateRevokedReplicated;
+                string message = String.Format(CertificateRevokedReplicated,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.CertificateRevokedReplicated));
+            }
+        }
+
+        public static void CertificateWithPvkInstallationSuccess(string certName)
+        {
+            if (log != null)
+            {
+                string CertificateWithPvkInstallationSuccess =
+                    AuditEvent.CertificateWithPvkInstallationSuccess;
+                string message = String.Format(CertificateWithPvkInstallationSuccess,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.CertificateWithPvkInstallationSuccess));
+            }
+        }
+
+        public static void CertificateWithoutPvkInstallationSuccess(string certName)
+        {
+            if (log != null)
+            {
+                string CertificateWithoutPvkInstallationSuccess =
+                    AuditEvent.CertificateWithoutPvkInstallationSuccess;
+                string message = String.Format(CertificateWithoutPvkInstallationSuccess,
+                    certName);
+                log.WriteEntry(message);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Error while trying to write event (eventid = {0}) to event log.",
+                    (int)AuditEventTypes.CertificateWithoutPvkInstallationSuccess));
             }
         }
 

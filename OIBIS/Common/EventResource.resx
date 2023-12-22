@@ -118,27 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CertificateCreated" xml:space="preserve">
-    <value>Uspesno kreiranje sertifikata bez pvk-a {0}</value>
+    <value>Uspesno kreiranje sertifikata bez pvk-a '{0}'</value>
   </data>
   <data name="CertificateFailed" xml:space="preserve">
-    <value>Neuspesno kreiranje sertifikata bez pvk-a {0}</value>
+    <value>Neuspesno kreiranje sertifikata bez pvk-a '{0}'</value>
   </data>
   <data name="CertificatePasswordCreated" xml:space="preserve">
-    <value>Uspesno kreiranje sertifikata sa pvk-om {0}</value>
+    <value>Uspesno kreiranje sertifikata sa pvk-om '{0}'</value>
   </data>
   <data name="CertificatePasswordFailed" xml:space="preserve">
-    <value>Neuspesno kreiranje sertifikata sa pvk-om {0}</value>
+    <value>Neuspesno kreiranje sertifikata sa pvk-om '{0}'</value>
+  </data>
+  <data name="CertificateReplicated" xml:space="preserve">
+    <value>Uspesno replicirani sertifikati '{0}'</value>
   </data>
   <data name="CertificateRevoked" xml:space="preserve">
-    <value>Uspesno povlacenje sertifikata {0}</value>
+    <value>Uspesno povlacenje sertifikata '{0}'</value>
+  </data>
+  <data name="CertificateRevokedReplicated" xml:space="preserve">
+    <value>Uspesno repliciranje povucenih sertifikata '{0}'</value>
   </data>
   <data name="CertificateRevokeFailed" xml:space="preserve">
-    <value>Neuspesno povlacenje sertifikata {0}</value>
+    <value>Neuspesno povlacenje sertifikata '{0}'</value>
+  </data>
+  <data name="CertificateWithoutPvkInstallationSuccess" xml:space="preserve">
+    <value>Uspesno instaliran sertifikat bez pvk-a '{0}'</value>
+  </data>
+  <data name="CertificateWithPvkInstallationSuccess" xml:space="preserve">
+    <value>Uspesno instaliran sertifikat sa pvk-om '{0}'</value>
   </data>
   <data name="ClientConnectionClosed" xml:space="preserve">
-    <value>Zatvaranje klijentske konekcije {0}</value>
+    <value>Uspesno zatvaranje klijentske konekcije '{0}'</value>
+  </data>
+  <data name="ClientConnectionOpen" xml:space="preserve">
+    <value>Uspesno uspostavljanje konekcije '{0}'</value>
   </data>
   <data name="ServerConnectionClosed" xml:space="preserve">
-    <value>Zatvaranje serverske konekcije {0}</value>
+    <value>Uspesno zatvaranje serverske konekcije '{0}'</value>
+  </data>
+  <data name="ServerConnectionOpen" xml:space="preserve">
+    <value>Uspesno uspostavljanje konekcije '{0}'</value>
   </data>
 </root>

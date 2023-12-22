@@ -18,53 +18,43 @@ namespace Klijent
         
         public WCFClient(object clientNotify, NetTcpBinding binding, EndpointAddress address) : base(clientNotify, binding, address)
         {
-
             string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
             this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
             this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
             this.Credentials.ClientCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
             factory = this.CreateChannel();
-
             
         }
 
-
         public bool CertificateWithPvk(string root)
         {
-
-
             if (!factory.CertificateWithPvk(root))
             {
-
-                Console.WriteLine("Neuspesno  generisanje sertifikata sa kljucem. Pokusajte ponovo!");
+                Console.WriteLine("Neuspesno generisanje sertifikata sa kljucem. Pokusajte ponovo.");
                 return false;
             }
             else
             {
-
-                Console.WriteLine("Instalirajte sertifikat i kliknite enter da nastavite.");
+                Console.WriteLine("Instalirajte sertifikate i kliknite enter da nastavite.");
                 Console.ReadLine();
 
                 Console.WriteLine("Uspesno generisanje sertifikata sa kljucem!");
 
                 return true;
             }
-
         }
-
 
         public bool CertificateWithoutPvk(string root)
         {
             if (!factory.CertificateWithoutPvk(root))
             {
 
-                Console.WriteLine("Neuspesno  generisanje sertifikata bez kljuca. Pokusajte ponovo!");
+                Console.WriteLine("Neuspesno generisanje sertifikata bez kljuca. Pokusajte ponovo!");
                 return false;
             }
             else
             {
-
                 Console.WriteLine("Instalirajte sertifikate i kliknite enter da nastavite.");
                 Console.ReadLine();
 
@@ -72,27 +62,45 @@ namespace Klijent
 
                 return true;
             }
-
         }
-
         public bool RevokeCertificate()
         {
             if (!factory.RevokeCertificate())
             {
-
-                Console.WriteLine("Neuspesno brisanje sertifikata!");
+                Console.WriteLine("Neuspesno povlacenje sertifikata!");
                 return false;
             }
             else
             {
-
                 Console.WriteLine("Sertifikati su povuceni i upisani u RevocationList.txt. Pritisnite enter da nastavite");
                 Console.ReadLine();
 
                 return true;
             }
-
         }
 
+        public void InstallCertificateWithoutPvk(string path)
+        {
+            try
+            {
+                factory.InstallCertificateWithoutPvk(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem prilikom instalacije sertifikata bez privatnog kljuca");
+            }
+        }
+
+        public void InstallCertificateWithPvk(string path, string password)
+        {
+            try
+            {
+                factory.InstallCertificateWithPvk(path, password);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem prilikom instalacije sertifikata sa privatnim kljucem");
+            }
+        }
     }
 }

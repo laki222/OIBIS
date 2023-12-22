@@ -22,7 +22,7 @@ namespace Server
                 if (servCert.Thumbprint == message)
                 {
                     Console.WriteLine("Zatvaranje konekcije sa strane servera");
-                    Program.closeConnection();
+                    Program.CloseConnection();
 
                     Audit.ServerConnectionClosed(srvName);
                 }

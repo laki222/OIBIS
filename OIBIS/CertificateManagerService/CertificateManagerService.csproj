@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="CertificateManager.cs" />
     <Compile Include="Formatter.cs" />
-    <Compile Include="ICertificateManagerService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyBackup.cs" />

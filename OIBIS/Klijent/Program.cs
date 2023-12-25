@@ -101,19 +101,6 @@ namespace Klijent
 
         private static void ConnectToServer()
         {
-            NetTcpBinding binding = new NetTcpBinding();
-
-            string address = "net.tcp://localhost:4000/Server";
-
-            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-            binding.MaxReceivedMessageSize = 10000000;
-            binding.MaxBufferSize = 10000000;
-            binding.MaxBufferPoolSize = 10000000;
-            binding.OpenTimeout = new TimeSpan(0, 10, 0);
-            binding.CloseTimeout = new TimeSpan(0, 10, 0);
-            binding.SendTimeout = new TimeSpan(0, 10, 0);
-            binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
-
             Console.WriteLine("Unesite ime servera: ");
             string serverName = Console.ReadLine();
             X509Certificate2 servCert;
@@ -131,6 +118,18 @@ namespace Klijent
                 Console.WriteLine($"Server ne postoji. Molimo vas probajte ponovo.\n {e.Message}");
                 return;
             }
+
+            NetTcpBinding binding = new NetTcpBinding();
+                binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+                binding.MaxReceivedMessageSize = 10000000;
+                binding.MaxBufferSize = 10000000;
+                binding.MaxBufferPoolSize = 10000000;
+                binding.OpenTimeout = new TimeSpan(0, 10, 0);
+                binding.CloseTimeout = new TimeSpan(0, 10, 0);
+                binding.SendTimeout = new TimeSpan(0, 10, 0);
+                binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
+
+            string address = "net.tcp://localhost:4000/Server";
 
             WCFConnect proxyWcf;
   

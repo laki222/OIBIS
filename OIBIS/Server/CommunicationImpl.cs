@@ -26,16 +26,12 @@ namespace Server
             string subjectName = clientCert.SubjectName.Name;
             string OU = subjectName.Split(',')[1];
 
-            string commonName = subjectName.Split(',')[0];
-            commonName = commonName.Substring(3);
-
             if (!(OU.Contains("RegionWest") || OU.Contains("RegionEast") || OU.Contains("RegionNorth") || OU.Contains("RegionSouth")))
             {
                 Console.WriteLine("Korisnik koji pokusava da salje poruku nije deo zahtevane grupe");
                 throw new SecurityException("Korisnik koji pokusava da salje poruku nije deo zahtevane grupe");
 
             }
-            name = commonName;
             Console.WriteLine($"Client '{name}' connected. \nwith message: {message}");
             return "";
         }

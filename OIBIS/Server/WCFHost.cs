@@ -35,15 +35,13 @@ namespace Server
                 binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
 
                 string address = "net.tcp://localhost:4000/Server";
+                string srvName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
                 host = new ServiceHost(typeof(CommunicationImpl));
                 host.AddServiceEndpoint(typeof(ICommunication), binding, address);
 
                 host.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
                 host.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
-
-
-                string srvName = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
                 host.Credentials.ServiceCertificate.Certificate = CertMng.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, srvName);
 
                 Console.WriteLine("Server je pokrenut");

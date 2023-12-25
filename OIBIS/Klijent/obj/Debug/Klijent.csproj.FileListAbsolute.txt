@@ -78,3 +78,17 @@ C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
 C:\Users\Korisnik\Desktop\Projekat\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe.config
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.exe
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\Klijent.pdb
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\Common.dll
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.pdb
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\CertificateManagerService.exe.config
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\bin\Debug\Common.pdb
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.AssemblyReference.cache
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.SuggestedBindingRedirects.cache
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CoreCompileInputs.cache
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.csproj.CopyComplete
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.exe
+C:\Users\copa2\Source\Repos\laki222\OIBIS\OIBIS\Klijent\obj\Debug\Klijent.pdb

@@ -15,19 +15,16 @@ using System.Threading.Tasks;
 namespace CertificateManagerService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Reentrant)]
-    public class CertificateManager : IService, ICertificateManagerService
+    public class CertificateManager : IService
     {
         public static List<INotify> clients = new List<INotify>();
-        public string CommunicateWithService(string message)
-        {
-            Console.WriteLine($"Client connected: {message}");
-            return $"Service received: {message}";
-        }
+
         /// <summary>
         /// Generisanje sertifikata sa pvk-om
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
+        /// 
         public bool CertificateWithPvk(string root)
         {
             IIdentity identity = Thread.CurrentPrincipal.Identity;
